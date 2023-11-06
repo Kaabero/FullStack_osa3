@@ -33,7 +33,7 @@ app.get('/api/info', (request, response) => {
     
   })
 
-  app.get('/api/persons/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     const person = persons.find(person => person.id === id)
     
@@ -44,6 +44,19 @@ app.get('/api/info', (request, response) => {
     }
   })
 
+  app.delete('/api/persons/:id', (request, response) => {
+    const id = Number(request.params.id)
+    persons = persons.filter(person => person.id !== id)
+  
+    response.status(204).end()
+  })
+
+  const generateId = () => {
+    const maxId = persons.length > 0
+      ? Math.max(...persons.map(p => p.id))
+      : 0
+    return maxId + 1
+  }
   
 const PORT = 3001
 app.listen(PORT, () => {
