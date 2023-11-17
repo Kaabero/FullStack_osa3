@@ -29,7 +29,7 @@ app.get('/api/persons', (request, response) => {
 
 app.get('/api/info', (request, response) => {
   Person.find({}).then(persons => {
-    response.json(`<p>Phonebook has info for ${persons.length} people </p>` + '<br />' + Date())
+    response.json(`Phonebook has info for ${persons.length} people /n ${Date()}`)
   })
     //response.send(`<p>Phonebook has info for ${persons.length} people </p>` + '<br />' + Date())    
 })
