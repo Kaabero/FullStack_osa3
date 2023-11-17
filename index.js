@@ -63,6 +63,22 @@ app.delete('/api/persons/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
+app.put('/api/persons/:id', (request, response, next) => {
+  const body = request.body
+  const number = body.number
+
+  const person = {
+    content: body.name,
+    important: body.number,
+  }
+
+  Person.findByIdAndUpdate(request.params.id, person, { new: number })
+    .then(updatedPerson => {
+      response.json(updatedPerson)
+    })
+    .catch(error => next(error))
+})
+
 /*
 function getRandomId(min, max) {
   min = Math.ceil(min)
