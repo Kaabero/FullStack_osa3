@@ -45,10 +45,6 @@ app.delete('/api/persons/:id', (request, response) => {
       response.status(204).end()
     })
     .catch(error => next(error))
-  //const id = Number(request.params.id)
-  //persons = persons.filter(person => person.id !== id)
-  
-  //response.status(204).end()
 })
 
 /*
