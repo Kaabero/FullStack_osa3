@@ -40,6 +40,7 @@ if (process.argv.length===3) {
         })
         mongoose.connection.close()
     })
+
 } else {
 
     person.save().then(result => {
