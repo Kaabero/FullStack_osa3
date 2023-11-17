@@ -24,25 +24,20 @@ app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => {
     response.json(persons)
   })
-    //res.json(persons)
+
 })
 
 app.get('/api/info', (request, response) => {
-    response.send(`<p>Phonebook has info for ${persons.length} people </p>` + '<br />' + Date())
-    
+  Person.find({}).then(persons => {
+    response.json(`<p>Phonebook has info for ${persons.length} people </p>` + '<br />' + Date())
+  })
+    //response.send(`<p>Phonebook has info for ${persons.length} people </p>` + '<br />' + Date())    
 })
 
 app.get('/api/persons/:id', (request, response) => {
   Person.findById(request.params.id).then(person => {
     response.json(person)
   })
-    //const id = Number(request.params.id)
-    //const person = persons.find(person => person.id === id)
-    
-    //if (person) {
-      //response.json(person)
-    //} else {
-      //response.status(404).end()
 })
 
 app.delete('/api/persons/:id', (request, response) => {
@@ -52,20 +47,24 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(204).end()
 })
 
+/*
 function getRandomId(min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min) + min)
 }
+*/
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
-    //const name = persons.find(person => person.name === body.name)
+  /*
+  const name = persons.find(person => person.name === body.name)
 
-    //if (name) {
-      //  return response.status(400).json({ 
-        //    error: 'name must be unique' 
-      //})
+  if (name) {
+    return response.status(400).json({ 
+      error: 'name must be unique' 
+  })
+  */
   
 
   if (!body.name || !body.number) {
@@ -95,10 +94,6 @@ app.post('/api/persons', (request, response) => {
   person.save().then(savedPerson => {
     response.json(savedPerson)
   })
-  
-    //persons = persons.concat(person)
-  
-    //response.json(person)
 })
 
 app.use(unknownEndpoint)
