@@ -19,28 +19,6 @@ app.use(express.static('dist'))
 
 let persons = [
 ]
-  //{
-    //id: 1,
-    //name: "Arto Hellas",
-    //number: "040-123456"
-  //},
-  //{
-    //id: 2,
-    //name: "Ada Lovelace",
-    //number: "39-44-5323523"
-  //},
-  //{
-    //id: 3,
-    //name: "Dan Abramov",
-    //number: "12-43-234345"
-//},
-//{
-    //id: 4,
-    //name: "Mary Poppendick",
-    //number: "39-23-6423122"
-    
-//}
-//]
 
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => {
@@ -109,7 +87,7 @@ app.post('/api/persons', (request, response) => {
     }
   
   const person = new Person({
-      //id: getRandomId(1, 5000),
+    id: getRandomId(1, 5000),
     name: body.name,
     number: body.number,
   })
