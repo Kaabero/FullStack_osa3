@@ -87,7 +87,7 @@ app.post('/api/persons', (request, response) => {
     }
   
   const person = new Person({
-    id: getRandomId(1, 5000),
+    // id: getRandomId(1, 5000),
     name: body.name,
     number: body.number,
   })
