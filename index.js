@@ -65,7 +65,6 @@ app.delete('/api/persons/:id', (request, response, next) => {
 
 app.put('/api/persons/:id', (request, response, next) => {
   const body = request.body
-  const number = body.number
 
   const person = {
     name: body.name,
@@ -74,7 +73,6 @@ app.put('/api/persons/:id', (request, response, next) => {
 
   Person.findByIdAndUpdate(request.params.id, person, { new: body.number })
     .then(updatedPerson => {
-      console.log('updated person', updatedPerson.number)
       response.json(updatedPerson)
     })
     .catch(error => next(error))
@@ -90,14 +88,14 @@ function getRandomId(min, max) {
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
-  /*
+  
   const name = persons.find(person => person.name === body.name)
 
   if (name) {
     return response.status(400).json({ 
       error: 'name must be unique' 
-  })
-  */
+    })
+  }
   
 
   if (!body.name || !body.number) {
