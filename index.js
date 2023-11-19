@@ -68,12 +68,13 @@ app.put('/api/persons/:id', (request, response, next) => {
   const number = body.number
 
   const person = {
-    content: body.name,
-    important: body.number,
+    name: body.name,
+    number: body.number,
   }
 
   Person.findByIdAndUpdate(request.params.id, person, { new: body.number })
     .then(updatedPerson => {
+      console.log('updated person', updatedPerson.number)
       response.json(updatedPerson)
     })
     .catch(error => next(error))
